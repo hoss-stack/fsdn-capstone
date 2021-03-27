@@ -3,8 +3,8 @@ from sqlalchemy import Column, String, Integer, DateTime
 from flask_sqlalchemy import SQLAlchemy
 
 # get database url from environment
-database_url = os.environ['DATABASE_URL']
-test_database_url = os.environ['TEST_DATABASE_URL']
+database_url = os.environ['DATABASE_URL'].replace("://", "ql://", 1)
+test_database_url = os.environ['TEST_DATABASE_URL'].replace("://", "ql://", 1)
 env = os.environ['ENV']
 
 # get database url based on test\dev environment
