@@ -5,7 +5,6 @@ import json
 from app import create_app
 from models import setup_db, Movie, Actor
 
-# Tokens are formatted as such to limit lenght on a line
 CASTING_ASSISTANT_TOKEN = os.environ['CASTING_ASSISTANT_TOKEN']
 CASTING_DIRECTOR_TOKEN = os.environ['CASTING_DIRECTOR_TOKEN']
 EXECUTIVE_PRODUCER_TOKEN = os.environ['EXECUTIVE_PRODUCER_TOKEN']
