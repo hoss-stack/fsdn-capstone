@@ -3,12 +3,15 @@ from sqlalchemy import Column, String, Integer, DateTime
 from flask_sqlalchemy import SQLAlchemy
 
 # get database url from environment
-database_url = os.environ['DATABASE_URL'].replace("://", "ql://", 1)
-test_database_url = os.environ['TEST_DATABASE_URL'].replace("://", "ql://", 1)
 env = os.environ['ENV']
-
-# get database url based on test\dev environment
-database_url = test_database_url if env == 'test' else database_url
+if env == 'test':
+    database_url = os.environ['TEST_DATABASE_URL']
+elif env == 'development':
+    database_url = os.environ['DATABASE_URL']
+elif env == 'deployment':
+    database_url = os.environ['HEROKU_POSTGRESQL_GRAY_URL'].replace("://", "ql://", 1)
+else:
+    raise ValueError
 
 db = SQLAlchemy()
 

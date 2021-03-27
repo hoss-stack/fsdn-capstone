@@ -93,7 +93,7 @@ def verify_decode_jwt(token):
 
     # process key and header data
     jsonurl = urlopen(f'https://{AUTH0_DOMAIN}/.well-known/jwks.json')
-    jwks = json.loads(jsonurl.read())
+    jwks = json.loads(jsonurl.read().decode('utf-8'))
     unverified_header = jwt.get_unverified_header(token)
 
     rsa_key = {}
@@ -137,8 +137,7 @@ def verify_decode_jwt(token):
         except jwt.JWTClaimsError:
             raise AuthError({
                 'code': 'invalid_claims',
-                'description': 'Incorrect claims. Please, ' +
-                'check the audience and issuer.'
+                'description': 'Incorrect claims. Please, check the audience and issuer.'
             }, 401)
         except Exception:
             raise AuthError({
@@ -146,9 +145,9 @@ def verify_decode_jwt(token):
                 'description': 'Unable to parse authentication token.'
             }, 400)
     raise AuthError({
-        'code': 'invalid_header',
+                'code': 'invalid_header',
                 'description': 'Unable to find the appropriate key.'
-    }, 400)
+            }, 400)
 
 
 def requires_auth(permission=''):
