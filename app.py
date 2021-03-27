@@ -5,6 +5,7 @@ from flask_cors import CORS
 from models import setup_db, Movie, Actor, db
 from auth import AuthError, requires_auth
 
+
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__)
@@ -122,7 +123,6 @@ def create_app(test_config=None):
         except Exception:
             db.session.rollback()
             abort(500)
-
 
     """Actors Routes"""
     # Route for getting all actors

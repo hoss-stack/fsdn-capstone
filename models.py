@@ -9,11 +9,13 @@ if env == 'test':
 elif env == 'development':
     database_url = os.environ['DATABASE_URL']
 elif env == 'deployment':
-    database_url = os.environ['HEROKU_POSTGRESQL_GRAY_URL'].replace("://", "ql://", 1)
+    database_url = os.environ['HEROKU_POSTGRESQL_GRAY_URL']
+    database_url.replace("://", "ql://", 1)
 else:
     raise ValueError
 
 db = SQLAlchemy()
+
 
 # Setup database config
 def setup_db(app, database_url=database_url):
@@ -22,6 +24,7 @@ def setup_db(app, database_url=database_url):
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     db.app = app
     db.init_app(app)
+
 
 # Setup Movie model
 class Movie(db.Model):
@@ -48,6 +51,7 @@ class Movie(db.Model):
             'title': self.title,
             'release_date': self.release_date,
         }
+
 
 # Setup Actor model
 class Actor(db.Model):

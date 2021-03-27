@@ -51,12 +51,7 @@ flask run
 #### Authentication
 
 Authentication is implemented using Auth0, it uses RBAC to assign permissions using roles, these are tokens you could use to access the endpoints.
-Note: The tokens expires in 24 hours you can create your own tokens at [Auth0](https://auth0.com/). you would need to refelct this in auth.py
-```py
-AUTH0_DOMAIN = '<your auth domain>'
-ALGORITHMS = ['RS256']
-API_AUDIENCE = '<your api audience>'
-```
+Note: The tokens expires in 24 hours you can create your own tokens at [Auth0](https://auth0.com/). you would need to refelct this in setup.sh
 
 > Casting Assistant
 - Can view actors and movies
